@@ -1,0 +1,45 @@
+def calcular_porcentaje(fraction):
+    try:
+        # Dividir la fracción en X e Y
+        x, y = map(int, fraction.split('/'))
+
+        # Verificar si Y es cero
+        if y == 0:
+            raise ZeroDivisionError
+
+        # Verificar si X es menor o igual a Y
+        if x > y:
+            raise ValueError
+
+        # Calcular el porcentaje
+        percentage = (x / y) * 100
+
+        # Redondear al número entero más cercano
+        rounded_percentage = round(percentage)
+
+        # Determinar el caso
+        if rounded_percentage < 1:
+            return 'E'
+        elif rounded_percentage > 99:
+            return 'F'
+        else:
+            return str(rounded_percentage) + '%'
+    except ValueError:
+        print("Error: Debe ingresar dos números enteros separados por '/'")
+        return None
+    except ZeroDivisionError:
+        print("Error: El denominador no puede ser cero")
+        return None
+
+
+def main():
+    while True:
+        fraction = input("Ingrese una fracción en formato X/Y (donde X e Y son números enteros): ")
+        result = calcular_porcentaje(fraction)
+        if result:
+            print("Cantidad de combustible en el tanque:", result)
+            break
+
+
+if __name__ == "__main__":
+    main()
